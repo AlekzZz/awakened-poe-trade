@@ -17,27 +17,28 @@ Here's what that looks like as of 2023-12-03.
 
 ```shell
 cd renderer
-yarn install
-yarn make-index-files
-yarn dev
+npm i
+npm run make-index-files
+npm run dev
 
 # In a second shell
 cd main
-yarn install
-yarn dev
+npm i
+npm run dev
 ```
 
 # How to build
 
 ```shell
-cd renderer
-yarn install
-yarn make-index-files
-yarn build
+make build   # Build using Docker
+make release # Complete release build
+make clean   # Remove build artifacts and Docker cache
+```
 
-cd ../main
-yarn build
-# We want to sign with a distribution certificate to ensure other users can
-# install without errors
-CSC_NAME="Certificate name in Keychain" yarn package
+Output: `dist/` in project root
+
+# Maintaining a fork
+
+```shell
+make sync  # Sync with original repository
 ```

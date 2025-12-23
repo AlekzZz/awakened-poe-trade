@@ -2,6 +2,8 @@ publish:
   - "github"
 productName: "Awakened PoE Trade"
 npmRebuild: false
+directories:
+  output: "../dist"
 files:
   - "package.json"
   - from: "dist"
