@@ -43,4 +43,4 @@ RUN npm run package -- --linux AppImage
 
 # Final stage - just the artifacts
 FROM scratch AS export
-COPY --from=builder /build/dist /dist
+COPY --from=builder /build/dist /
