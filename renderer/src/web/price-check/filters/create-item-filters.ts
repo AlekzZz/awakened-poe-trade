@@ -292,7 +292,20 @@ export function createFilters (
   }
 
   if (item.isMirrored) {
-    filters.mirrored = { disabled: false }
+    filters.mirrored = { disabled: false, hidden: false }
+  } else if (
+    item.info.craftable && !item.isCorrupted
+  ) {
+    filters.mirrored = { disabled: true, hidden: true }
+  }
+
+  if (item.isSplit) {
+    filters.split = { disabled: false, hidden: false }
+  } else if (
+    item.info.craftable && !item.isCorrupted && !item.isMirrored &&
+    !item.isSynthesised && !item.isFractured && !item.influences.length
+  ) {
+    filters.split = { disabled: true, hidden: true }
   }
 
   if (!item.isFractured &&

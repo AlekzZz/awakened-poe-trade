@@ -59,6 +59,7 @@ const parsers: Array<ParserFn | { virtual: VirtualParserFn }> = [
   parseMirroredTablet,
   parseFilledCoffin,
   parseMirrored,
+  parseSplit,
   parseSentinelCharge,
   parseLogbookArea,
   parseLogbookArea,
@@ -715,6 +716,16 @@ function parseMirrored (section: string[], item: ParsedItem) {
   return 'SECTION_SKIPPED'
 }
 
+function parseSplit (section: string[], item: ParsedItem) {
+  if (section.length === 1) {
+    if (section[0] === _$.SPLIT) {
+      item.isSplit = true
+      return 'SECTION_PARSED'
+    }
+  }
+  return 'SECTION_SKIPPED'
+}
+
 function parseFlask (section: string[], item: ParsedItem) {
   if (item.category !== ItemCategory.Flask) return 'PARSER_SKIPPED'
 
@@ -907,7 +918,7 @@ function parseMirroredTablet (section: string[], item: ParsedItem) {
   if (section.length < 8) return 'SECTION_SKIPPED'
 
   for (const line of section) {
-    const found = tryParseTranslation({ string: line, unscalable: true }, ModifierType.Pseudo)
+    const found = tryParseTranslation({ string: line, unscalable: true }, ModifierType.Pseudo, undefined)
     if (found) {
       item.newMods.push({
         info: { tags: [], type: ModifierType.Pseudo },

@@ -6,7 +6,8 @@ import { filterPseudo } from './pseudo'
 import { applyRules as applyAtzoatlRules } from './pseudo/atzoatl-rules'
 import { applyRules as applyMirroredTabletRules } from './pseudo/reflection-rules'
 import { filterItemProp, filterBasePercentile, filterMemoryStrands } from './pseudo/item-property'
-import { mapProps } from './pseudo/maps'
+import { mapProps, valdoBadMods } from './pseudo/maps'
+import { applyFlaskHybridMod } from './pseudo/flasks'
 import { decodeOils, applyAnointmentRules } from './pseudo/anointments'
 import { StatBetter, CLIENT_STRINGS } from '@/assets/data'
 
@@ -71,6 +72,7 @@ export function createExactStatFilters (
   filterBasePercentile(ctx)
   filterMemoryStrands(ctx)
   mapProps(ctx)
+  valdoBadMods(ctx)
 
   ctx.filters.push(
     ...ctx.statsByType.map(mod => calculatedStatToFilter(mod, ctx.searchInRange, item))
@@ -116,6 +118,7 @@ export function createExactStatFilters (
     applyClusterJewelRules(ctx.filters)
   } else if (item.category === ItemCategory.Flask) {
     applyFlaskRules(ctx.filters)
+    applyFlaskHybridMod(ctx)
   } else if (
     item.category === ItemCategory.MemoryLine ||
     item.category === ItemCategory.SanctumRelic ||
@@ -417,6 +420,7 @@ function finalFilterTweaks (ctx: FiltersCreationContext) {
     applyClusterJewelRules(ctx.filters)
   } else if (item.category === ItemCategory.Flask) {
     applyFlaskRules(ctx.filters)
+    applyFlaskHybridMod(ctx)
   }
 
   const hasEmptyModifier = showHasEmptyModifier(ctx)

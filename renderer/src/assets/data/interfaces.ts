@@ -90,6 +90,7 @@ export interface BaseType {
   unique?: {
     base: BaseType['refName']
     fixedStats?: Array<Stat['ref']>
+    disenchantValue?: number
   }
   map?: {
     screenshot?: string
@@ -181,6 +182,7 @@ export interface TranslationDict {
   HEIST_BLUEPRINT_GEMS: string
   HEIST_BLUEPRINT_REPLICAS: string
   MIRRORED: string
+  SPLIT: string
   MODIFIER_LINE: RegExp
   PREFIX_MODIFIER: string
   SUFFIX_MODIFIER: string
