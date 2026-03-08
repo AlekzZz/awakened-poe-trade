@@ -118,7 +118,7 @@ export interface TranslationDict {
   RARITY_CURRENCY: string
   RARITY_DIVCARD: string
   RARITY_QUEST: string
-  MAP_TIER: string
+  MAP_TIER: RegExp
   MAP_ITEM_QUANTITY: string
   MAP_ITEM_RARITY: string
   MAP_MONSTER_PACK_SIZE: string
@@ -188,6 +188,9 @@ export interface TranslationDict {
   SUFFIX_MODIFIER: string
   CRAFTED_PREFIX: string
   CRAFTED_SUFFIX: string
+  IMPLICIT_MODIFIER: string
+  FRACTURED_PREFIX: string
+  FRACTURED_SUFFIX: string
   UNSCALABLE_VALUE: string
   CORRUPTED_IMPLICIT: string
   MODIFIER_INCREASED: RegExp
